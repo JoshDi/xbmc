@@ -3277,6 +3277,7 @@ PlayBackRet CApplication::PlayFile(const CFileItem& item, bool bRestart)
 
     // Switch to default options
     CMediaSettings::GetInstance().GetCurrentVideoSettings() = CMediaSettings::GetInstance().GetDefaultVideoSettings();
+    CMediaSettings::GetInstance().GetAtStartVideoSettings() = CMediaSettings::GetInstance().GetCurrentVideoSettings();
     CMediaSettings::GetInstance().GetCurrentAudioSettings() = CMediaSettings::GetInstance().GetDefaultAudioSettings();
     // see if we have saved options in the database
 
@@ -3890,7 +3891,9 @@ void CApplication::LoadVideoSettings(const CFileItem& item)
     // Load stored settings if they exist, otherwise use default
     if (!dbs.GetVideoSettings(item, CMediaSettings::GetInstance().GetCurrentVideoSettings()))
       CMediaSettings::GetInstance().GetCurrentVideoSettings() = CMediaSettings::GetInstance().GetDefaultVideoSettings();
-    
+
+    CMediaSettings::GetInstance().GetAtStartVideoSettings() = CMediaSettings::GetInstance().GetCurrentVideoSettings();
+
     dbs.Close();
   }
 }

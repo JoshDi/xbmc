@@ -124,7 +124,7 @@ bool CSaveFileStateJob::DoWork()
           }
         }
 
-        if (m_videoSettings != CMediaSettings::GetInstance().GetDefaultVideoSettings())
+        if (m_videoSettings != CMediaSettings::GetInstance().GetAtStartVideoSettings())
         {
           videodatabase.SetVideoSettings(progressTrackingFile, m_videoSettings);
         }

@@ -55,6 +55,8 @@ public:
   CVideoSettings& GetDefaultVideoSettings() { return m_defaultVideoSettings; }
   const CVideoSettings& GetCurrentVideoSettings() const { return m_currentVideoSettings; }
   CVideoSettings& GetCurrentVideoSettings() { return m_currentVideoSettings; }
+  const CVideoSettings& GetAtStartVideoSettings() const { return m_atstartVideoSettings; }
+  CVideoSettings& GetAtStartVideoSettings() { return m_atstartVideoSettings; }
 
   const CAudioSettings& GetDefaultAudioSettings() const { return m_defaultAudioSettings; }
   CAudioSettings& GetDefaultAudioSettings() { return m_defaultAudioSettings; }
@@ -108,6 +110,7 @@ protected:
 private:
   CVideoSettings m_defaultVideoSettings;
   CVideoSettings m_currentVideoSettings;
+  CVideoSettings m_atstartVideoSettings;
 
   CAudioSettings m_defaultAudioSettings;
   CAudioSettings m_currentAudioSettings;
