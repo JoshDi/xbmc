@@ -60,11 +60,11 @@ bool CPVRDirectory::GetDirectory(const CURL& url, CFileItemList &items)
   CLog::Log(LOGDEBUG, "CPVRDirectory::GetDirectory(%s)", base.c_str());
   items.SetCacheToDisc(CFileItemList::CACHE_NEVER);
 
-  if (!g_PVRManager.IsStarted())
-    return false;
-
   if (fileName == "")
   {
+    if (!g_PVRManager.IsStarted())
+      return false;
+
     CFileItemPtr item;
 
     item.reset(new CFileItem(base + "channels/", true));
@@ -89,16 +89,25 @@ bool CPVRDirectory::GetDirectory(const CURL& url, CFileItemList &items)
   }
   else if (StringUtils::StartsWith(fileName, "recordings"))
   {
+    if (!g_PVRManager.IsStarted())
+      return false;
+
     const std::string pathToUrl(url.Get());
     return g_PVRRecordings->GetDirectory(pathToUrl, items);
   }
   else if (StringUtils::StartsWith(fileName, "channels"))
   {
+    if (!g_PVRChannelGroups || !g_PVRChannelGroups->Loaded())
+      return false;
+
     const std::string pathToUrl(url.Get());
     return g_PVRChannelGroups->GetDirectory(pathToUrl, items);
   }
   else if (StringUtils::StartsWith(fileName, "timers"))
   {
+    if (!g_PVRManager.IsStarted())
+      return false;
+
     const std::string pathToUrl(url.Get());
     return g_PVRTimers->GetDirectory(pathToUrl, items);
   }
@@ -122,14 +131,26 @@ bool CPVRDirectory::IsLiveTV(const std::string& strPath)
   return URIUtils::IsLiveTV(filename);
 }
 
-bool CPVRDirectory::HasRecordings()
-{
-  return g_PVRManager.IsStarted() ? 
-    g_PVRRecordings->GetNumRecordings() > 0 : false;
-}
-
-bool CPVRDirectory::HasDeletedRecordings()
+bool CPVRDirectory::HasTVRecordings()
 {
   return g_PVRManager.IsStarted() ?
-    g_PVRRecordings->HasDeletedRecordings() : false;
+    g_PVRRecordings->GetNumTVRecordings() > 0 : false;
+}
+
+bool CPVRDirectory::HasDeletedTVRecordings()
+{
+  return g_PVRManager.IsStarted() ?
+    g_PVRRecordings->HasDeletedTVRecordings() : false;
+}
+
+bool CPVRDirectory::HasRadioRecordings()
+{
+  return g_PVRManager.IsStarted() ?
+    g_PVRRecordings->GetNumRadioRecordings() > 0 : false;
+}
+
+bool CPVRDirectory::HasDeletedRadioRecordings()
+{
+  return g_PVRManager.IsStarted() ?
+    g_PVRRecordings->HasDeletedRadioRecordings() : false;
 }

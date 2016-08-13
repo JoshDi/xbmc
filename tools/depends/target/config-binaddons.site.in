@@ -34,9 +34,6 @@ LD_LIBRARY_PATH=@prefix@/@tool_dir@/lib:$LD_LIBRARY_PATH
 
 NATIVE_ROOT=@prefix@/@tool_dir@
 
-#libomxil-bellagio
-ac_cv_func_malloc_0_nonnull=yes
-
 #curl
 ac_cv_file__dev_urandom=yes
 ac_cv_lib_ssl_SSL_connect=yes
@@ -144,11 +141,6 @@ if test "@platform_os@" = "ios"; then
     export CFLAGS=`echo ${CFLAGS} | sed 's/-O3/-Os/'`
     export CPPFLAGS=`echo ${CPPFLAGS} | sed 's/-O3/-Os/'`
   fi
-
-  # tweaks for libmpeg2
-  if test "${PACKAGE_NAME}" = "libmpeg2" ; then
-    export LDFLAGS="${LDFLAGS} -Wl,-read_only_relocs,suppress"
-  fi
 fi
 
 #Fix for older, broken android toolchains
@@ -161,7 +153,6 @@ fi
 if test "${ac_unique_file}" = "src/flac/main.c" || \
    test "${ac_unique_file}" = "src/framing.c" || \
    test "${ac_unique_file}" = "src/libdvdcss.c" || \
-   test "${PACKAGE_NAME}" = "libmpeg2" || \
    test "${PACKAGE_NAME}" = "libssh2" ; then
      CFLAGS="$CFLAGS -fvisibility=default"
 fi

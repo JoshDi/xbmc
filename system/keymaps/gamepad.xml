@@ -18,9 +18,10 @@
 <!--       <obc45>Stop</obc45>         -->
 <!--    </universalremote>            -->
 
-<!-- Note that the action can be a built-in function.                 -->
-<!--  eg <B>ActivateWindow(MyMusic)</B>                         -->
-<!-- would automatically go to My Music on the press of the B button. -->
+<!-- Note that the action can be a built-in function.                                         -->
+<!--  eg <B>ActivateWindow(Music)</B>                                                       -->
+<!-- would automatically go to My Music on the press of the B button.                         -->
+<!-- An empty action removes the corresponding mapping from the default keymap                -->
 
 <!-- Joysticks / Gamepads:                                                                    -->
 <!--   See the sample PS3 controller configuration below for the format.                      -->
@@ -60,16 +61,11 @@
       <rightthumbstickdown>VolumeDown</rightthumbstickdown>
     </gamepad>
   </global>
-  <Home>
-    <gamepad>
-      <black>Skin.ToggleSetting(HomeViewToggle)</black>
-    </gamepad>
-  </Home>
-  <MyFiles>
+  <FileManager>
     <gamepad>
       <Y>Highlight</Y>
     </gamepad>
-  </MyFiles>
+  </FileManager>
   <MyMusicPlaylist>
     <gamepad>
       <Y>Delete</Y>
@@ -81,24 +77,18 @@
       <Y>Queue</Y>
     </gamepad>
   </MyMusicPlaylistEditor>
-  <MyMusicFiles>
+  <Music>
     <gamepad>
       <Y>Queue</Y>
       <black>Playlist</black>
     </gamepad>
-  </MyMusicFiles>
-  <MyMusicLibrary>
-    <gamepad>
-      <Y>Queue</Y>
-      <black>Playlist</black>
-    </gamepad>
-  </MyMusicLibrary>
+  </Music>
   <FullscreenVideo>
     <gamepad>
       <A>Pause</A>
       <B>Stop</B>
       <Y>AspectRatio</Y>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <back>Seek(-7)</back><!-- Replaces smallstepback -->
       <start>OSD</start>
@@ -129,7 +119,7 @@
   <FullscreenInfo>
     <gamepad>
       <start>OSD</start>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Back</white>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
@@ -145,7 +135,7 @@
       <A>Pause</A>
       <B>Stop</B>
       <Y>ActivateWindow(VisualisationPresetList)</Y>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <start>OSD</start>
       <back>LockPreset</back>
@@ -160,19 +150,19 @@
   <MusicOSD>
     <gamepad>
       <start>Back</start>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
     </gamepad>
   </MusicOSD>
-  <VisualisationSettings>
+  <AddonSettings>
     <gamepad>
       <start>Back</start>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
     </gamepad>
-  </VisualisationSettings>
+  </AddonSettings>
   <VisualisationPresetList>
     <gamepad>
       <start>Back</start>
@@ -187,7 +177,7 @@
       <B>Stop</B>
       <Y>Rotate</Y>
       <X>ZoomNormal</X>
-      <black>CodecInfo</black>
+      <black>Info</black>
       <white>Info</white>
       <righttrigger>NextPicture</righttrigger>
       <lefttrigger>PreviousPicture</lefttrigger>
@@ -207,17 +197,17 @@
       <white>NextResolution</white>
     </gamepad>
   </ScreenCalibration>
-  <GUICalibration>
+  <ScreenCalibration>
     <gamepad>
       <leftthumbstick>AnalogMove</leftthumbstick>
       <A>NextCalibration</A>
       <black>ResetCalibration</black>
     </gamepad>
-  </GUICalibration>
+  </ScreenCalibration>
   <VideoOSD>
     <gamepad>
       <start>Back</start>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
@@ -229,7 +219,7 @@
       <B>Stop</B>
       <start>OSD</start>
       <white>Info</white>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
     </gamepad>
@@ -239,7 +229,7 @@
       <X/>
       <Y>AspectRatio</Y>
       <start>Back</start>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
@@ -250,7 +240,7 @@
       <X/>
       <Y>AspectRatio</Y>
       <start>Back</start>
-      <black>CodecInfo</black>
+      <black>PlayerProcessInfo</black>
       <white>Info</white>
       <leftanalogtrigger>AnalogRewind</leftanalogtrigger>
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
@@ -265,17 +255,11 @@
       <rightanalogtrigger>AnalogFastForward</rightanalogtrigger>
     </gamepad>
   </VideoBookmarks>
-  <MyVideoLibrary>
+  <Videos>
     <gamepad>
       <black>Delete</black>
     </gamepad>
-  </MyVideoLibrary>
-  <MyVideoFiles>
-    <gamepad>
-      <Y>Queue</Y>
-      <black>Playlist</black>
-    </gamepad>
-  </MyVideoFiles>
+  </Videos>
   <MyVideoPlaylist>
     <gamepad>
       <Y>Delete</Y>
@@ -297,11 +281,11 @@
       <white>Back</white>
     </gamepad>
   </ContextMenu>
-  <Scripts>
+  <Programs>
     <gamepad>
       <black>info</black>
     </gamepad>
-  </Scripts>
+  </Programs>
   <NumericInput>
     <gamepad>
       <B>BackSpace</B>
@@ -331,4 +315,9 @@
       <dpadright>NextPicture</dpadright>
     </gamepad>
   </PictureInfo>
+  <PlayerProcessInfo>
+    <gamepad>
+      <black>PlayerProcessInfo</black>
+    </gamepad>
+  </PlayerProcessInfo>
 </keymap>

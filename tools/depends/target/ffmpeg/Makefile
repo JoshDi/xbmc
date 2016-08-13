@@ -19,15 +19,14 @@ ffmpg_config += --enable-muxer=asf --enable-muxer=ipod
 ffmpg_config += --enable-encoder=ac3 --enable-encoder=aac
 ffmpg_config += --enable-encoder=wmav2 --enable-protocol=http
 ffmpg_config += --enable-gnutls
-ffmpg_config += --enable-libdcadec
+ffmpg_config += --enable-encoder=png --enable-encoder=mjpeg
 
 ifeq ($(CROSS_COMPILING), yes)
   ffmpg_config += --arch=$(CPU) --enable-cross-compile
 endif
 ifeq ($(OS), linux)
   ffmpg_config += --target-os=$(OS) --cpu=$(CPU)
-  ffmpg_config += --enable-vdpau --enable-vaapi
-  ffmpg_config += --enable-libvorbis --enable-muxer=ogg --enable-encoder=libvorbis
+  ffmpg_config += --enable-vdpau --enable-vaapi --enable-pic
 endif
 ifeq ($(OS), android)
   ifeq ($(findstring arm, $(CPU)), arm)
@@ -38,13 +37,16 @@ ifeq ($(OS), android)
   ffmpg_config += --target-os=linux
 endif
 ifeq ($(OS), ios)
-  ffmpg_config += --cpu=cortex-a8 --yasmexe=$(NATIVEPREFIX)/bin/yasm
-  ffmpg_config += --disable-decoder=mpeg_xvmc --enable-vda --disable-crystalhd
+  ifneq ($(CPU), arm64)
+    ffmpg_config += --cpu=cortex-a8
+  endif
+  ffmpg_config += --yasmexe=$(NATIVEPREFIX)/bin/yasm
+  ffmpg_config += --disable-decoder=mpeg_xvmc --disable-vda --disable-crystalhd --enable-videotoolbox
   ffmpg_config += --target-os=darwin
 endif
 ifeq ($(OS), osx)
   ffmpg_config += --disable-outdev=sdl
-  ffmpg_config += --disable-decoder=mpeg_xvmc --enable-vda --disable-crystalhd --disable-videotoolbox
+  ffmpg_config += --disable-decoder=mpeg_xvmc --disable-vda --disable-crystalhd --enable-videotoolbox
   ffmpg_config += --target-os=darwin
   ffmpg_config += --disable-securetransport
 endif
@@ -87,4 +89,3 @@ clean:
 
 distclean::
 	rm -rf $(PLATFORM) .installed-$(PLATFORM)
-
